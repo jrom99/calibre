@@ -13,31 +13,26 @@ def hasenv(x):
 
 
 def as_bytes(x, encoding='utf-8'):
-    if isinstance(x, unicode_type):
-        return x.encode(encoding)
     if isinstance(x, bytes):
         return x
     if isinstance(x, bytearray):
         return bytes(x)
     if isinstance(x, memoryview):
         return x.tobytes()
-    ans = unicode_type(x)
-    if isinstance(ans, unicode_type):
-        ans = ans.encode(encoding)
-    return ans
+    return str(x).encode(encoding)
 
 
 def as_unicode(x, encoding='utf-8', errors='strict'):
     if isinstance(x, bytes):
         return x.decode(encoding, errors)
-    return unicode_type(x)
+    return str(x)
 
 
 def only_unicode_recursive(x, encoding='utf-8', errors='strict'):
     # Convert any bytestrings in sets/lists/tuples/dicts to unicode
     if isinstance(x, bytes):
         return x.decode(encoding, errors)
-    if isinstance(x, unicode_type):
+    if isinstance(x, str):
         return x
     if isinstance(x, (set, list, tuple, frozenset)):
         return type(x)(only_unicode_recursive(i, encoding, errors) for i in x)
@@ -70,7 +65,6 @@ filter = builtins.filter
 range = builtins.range
 
 codepoint_to_chr = chr
-unicode_type = str
 string_or_bytes = str, bytes
 string_or_unicode = str
 long_type = int
@@ -81,9 +75,9 @@ getenv = os.getenv
 
 def error_message(exc):
     args = getattr(exc, 'args', None)
-    if args and isinstance(args[0], unicode_type):
+    if args and isinstance(args[0], str):
         return args[0]
-    return unicode_type(exc)
+    return str(exc)
 
 
 def iteritems(d):

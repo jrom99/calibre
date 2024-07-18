@@ -19,7 +19,7 @@
 
 import re
 
-from polyglot.builtins import string_or_bytes, unicode_type
+from polyglot.builtins import string_or_bytes
 
 from .namespaces import (
     ANIMNS,
@@ -72,20 +72,20 @@ def cnv_color(attribute, arg, element):
     """ A RGB color in conformance with §5.9.11 of [XSL], that is a RGB color in notation “#rrggbb”, where
         rr, gg and bb are 8-bit hexadecimal digits.
     """
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_configtype(attribute, arg, element):
-    if unicode_type(arg) not in ("boolean", "short", "int", "long",
+    if str(arg) not in ("boolean", "short", "int", "long",
     "double", "string", "datetime", "base64Binary"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 
 def cnv_data_source_has_labels(attribute, arg, element):
-    if unicode_type(arg) not in ("none","row","column","both"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+    if str(arg) not in ("none","row","column","both"):
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 # Understand different date formats
 
@@ -94,30 +94,30 @@ def cnv_date(attribute, arg, element):
     """ A dateOrDateTime value is either an [xmlschema-2] date value or an [xmlschema-2] dateTime
         value.
     """
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_dateTime(attribute, arg, element):
     """ A dateOrDateTime value is either an [xmlschema-2] date value or an [xmlschema-2] dateTime
         value.
     """
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_double(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_duration(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_family(attribute, arg, element):
     """ A style family """
-    if unicode_type(arg) not in ("text", "paragraph", "section", "ruby", "table", "table-column", "table-row", "table-cell",
+    if str(arg) not in ("text", "paragraph", "section", "ruby", "table", "table-column", "table-row", "table-cell",
       "graphic", "presentation", "drawing-page", "chart"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 
 def __save_prefix(attribute, arg, element):
@@ -141,21 +141,21 @@ def cnv_formula(attribute, arg, element):
 
 
 def cnv_ID(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_IDREF(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_integer(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_legend_position(attribute, arg, element):
-    if unicode_type(arg) not in ("start", "end", "top", "bottom", "top-start", "bottom-start", "top-end", "bottom-end"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+    if str(arg) not in ("start", "end", "top", "bottom", "top-start", "bottom-start", "top-end", "bottom-end"):
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 
 pattern_length = re.compile(r'-?([0-9]+(\.[0-9]*)?|\.[0-9]+)((cm)|(mm)|(in)|(pt)|(pc)|(px))')
@@ -187,9 +187,9 @@ def cnv_lengthorpercent(attribute, arg, element):
 
 
 def cnv_metavaluetype(attribute, arg, element):
-    if unicode_type(arg) not in ("float", "date", "time", "boolean", "string"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+    if str(arg) not in ("float", "date", "time", "boolean", "string"):
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 
 def cnv_major_minor(attribute, arg, element):
@@ -249,7 +249,7 @@ def cnv_NCNames(attribute, arg, element):
 
 
 def cnv_nonNegativeInteger(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 pattern_percent = re.compile(r'-?([0-9]+(\.[0-9]*)?|\.[0-9]+)%')
@@ -282,7 +282,7 @@ def cnv_points(attribute, arg, element):
 
 
 def cnv_positiveInteger(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_string(attribute, arg, element):
@@ -290,19 +290,19 @@ def cnv_string(attribute, arg, element):
 
 
 def cnv_textnoteclass(attribute, arg, element):
-    if unicode_type(arg) not in ("footnote", "endnote"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+    if str(arg) not in ("footnote", "endnote"):
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 # Understand different time formats
 
 
 def cnv_time(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 def cnv_token(attribute, arg, element):
-    return unicode_type(arg)
+    return str(arg)
 
 
 pattern_viewbox = re.compile(r'-?[0-9]+([ ]+-?[0-9]+){3}$')
@@ -316,9 +316,9 @@ def cnv_viewbox(attribute, arg, element):
 
 
 def cnv_xlinkshow(attribute, arg, element):
-    if unicode_type(arg) not in ("new", "replace", "embed"):
-        raise ValueError("'%s' not allowed" % unicode_type(arg))
-    return unicode_type(arg)
+    if str(arg) not in ("new", "replace", "embed"):
+        raise ValueError("'%s' not allowed" % str(arg))
+    return str(arg)
 
 
 attrconverters = {

@@ -28,8 +28,6 @@
 import re
 import sys
 
-from polyglot.builtins import unicode_type
-
 
 class Templite:
     auto_emit = re.compile(r'''(^['"])|(^[a-zA-Z0-9_\[\]'"]+$)''')
@@ -93,4 +91,4 @@ class Templite:
 
     def write(self, *args):
         for a in args:
-            self.__output.append(unicode_type(a))
+            self.__output.append(str(a))

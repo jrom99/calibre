@@ -23,8 +23,6 @@
 import xml.dom.minidom
 import zipfile
 
-from polyglot.builtins import unicode_type
-
 from .elementtypes import empty_elements, inline_elements
 from .namespaces import nsdict
 
@@ -100,9 +98,9 @@ class TextProps:
 
     def __unicode__(self):
 
-        return "[italic={}, bold=i{}, fixed={}]".format(unicode_type(self.italic),
-                                          unicode_type(self.bold),
-                                          unicode_type(self.fixed))
+        return "[italic={}, bold=i{}, fixed={}]".format(str(self.italic),
+                                          str(self.bold),
+                                          str(self.fixed))
     __str__ = __unicode__
 
 
@@ -131,9 +129,9 @@ class ParagraphProps:
 
     def __unicode__(self):
 
-        return "[bq=%s, h=%d, code=%s]" % (unicode_type(self.blockquote),
+        return "[bq=%s, h=%d, code=%s]" % (str(self.blockquote),
                                            self.headingLevel,
-                                           unicode_type(self.code))
+                                           str(self.code))
     __str__ = __unicode__
 
 
@@ -404,7 +402,7 @@ class ODF2MoinMoin:
             buffer.append(" "*indent)
             i += 1
             if props.ordered:
-                number = unicode_type(i)
+                number = str(i)
                 number = " " + number + ". "
                 buffer.append(" 1. ")
             else:

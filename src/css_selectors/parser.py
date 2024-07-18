@@ -15,7 +15,7 @@ import string
 import sys
 
 from css_selectors.errors import ExpressionError, SelectorSyntaxError
-from polyglot.builtins import codepoint_to_chr, unicode_type
+from polyglot.builtins import codepoint_to_chr
 
 utab = {c:c+32 for c in range(ord(u'A'), ord(u'Z')+1)}
 
@@ -24,7 +24,7 @@ if sys.version_info.major < 3:
 
     def ascii_lower(string):
         """Lower-case, but only in the ASCII range."""
-        return string.translate(utab if isinstance(string, unicode_type) else tab)
+        return string.translate(utab if isinstance(string, str) else tab)
 
     def urepr(x):
         if isinstance(x, list):
@@ -468,7 +468,7 @@ def parse_simple_selector(stream, inside_negation=False):
             if ident.lower() in special_pseudo_elements:
                 # Special case: CSS 2.1 pseudo-elements can have a single ':'
                 # Any new pseudo-element must have two.
-                pseudo_element = unicode_type(ident)
+                pseudo_element = str(ident)
                 continue
             if stream.peek() != ('DELIM', '('):
                 result = Pseudo(result, ident)
