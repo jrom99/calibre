@@ -13,7 +13,6 @@ from functools import wraps
 from calibre.ebooks.metadata.book.base import ALL_METADATA_FIELDS, NULL_VALUES, SIMPLE_GET, TOP_LEVEL_IDENTIFIERS, Metadata
 from calibre.ebooks.metadata.book.formatter import SafeFormat
 from calibre.utils.date import utcnow
-from polyglot.builtins import native_string_type
 
 # Lazy format metadata retrieval {{{
 '''
@@ -37,7 +36,7 @@ class MutableBase:
 
     @resolved
     def __str__(self):
-        return native_string_type(self._values)
+        return str(self._values)
 
     @resolved
     def __repr__(self):

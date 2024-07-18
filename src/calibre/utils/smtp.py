@@ -17,7 +17,7 @@ import traceback
 from calibre import isbytestring
 from calibre.constants import iswindows
 from calibre.utils.localization import _
-from polyglot.builtins import as_unicode, native_string_type
+from polyglot.builtins import as_unicode
 
 
 def decode_fqdn(fqdn):
@@ -157,7 +157,7 @@ def get_smtp_class(use_ssl=False, debuglevel=0):
     import polyglot.smtplib as smtplib
     cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
     bases = (cls,)
-    return type(native_string_type('SMTP'), bases, {native_string_type('debuglevel'): debuglevel})
+    return type(str('SMTP'), bases, {str('debuglevel'): debuglevel})
 
 
 def sendmail(msg, from_, to, localhost=None, verbose=0, timeout=None,

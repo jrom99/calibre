@@ -14,7 +14,7 @@ from calibre.utils.config_base import prefs, tweaks
 from calibre.utils.icu import collation_order, sort_key
 from calibre.utils.icu import lower as icu_lower
 from calibre.utils.icu import upper as icu_upper
-from polyglot.builtins import iteritems, native_string_type
+from polyglot.builtins import iteritems
 
 CATEGORY_SORTS = ('name', 'popularity', 'rating')  # This has to be a tuple not a set
 
@@ -53,7 +53,7 @@ class Tag:
         return self.string_representation
 
     def __repr__(self):
-        return native_string_type(self)
+        return str(self)
 
     __calibre_serializable__ = True
 
