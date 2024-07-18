@@ -6,7 +6,6 @@ import os
 import sys
 
 is_py3 = sys.version_info.major >= 3
-iterkeys = iter
 
 
 def hasenv(x):
