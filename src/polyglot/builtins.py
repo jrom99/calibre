@@ -67,7 +67,6 @@ range = builtins.range
 codepoint_to_chr = chr
 string_or_bytes = str, bytes
 string_or_unicode = str
-long_type = int
 raw_input = input
 getcwd = os.getcwd
 getenv = os.getenv
